@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ping single column coming soon page</title>
+    <link rel="icon" href="./favicon-32x32.png">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="./css/all.css">
+    <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('./LibreFranklin-VariableFont_wght.ttf') format('woff2');
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'MyCustomFont', sans-serif;;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container{
+            width: 1370px;
+            height: 629px;
+        }
+
+        .main {
+            width: 90%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            height: auto;
+            flex-direction: column;
+        }
+
+        header img {
+            padding: 15px 0;
+        }
+
+        h1 {
+            font-weight: 300;
+            color: hsl(0, 0%, 59%);
+            padding: 10px 0;
+        }
+
+        .soon {
+            font-weight: 700;
+            color: black;
+        }
+
+        header p {
+            padding: 10px 0;
+            margin-bottom: 25px; 
+        }
+
+        form {
+            width: 40%;
+            display: flex;
+        }
+
+        form input {
+            width: 100%;
+            border-radius: 25px;
+            outline: none;
+            padding: 15px;
+            border: 0.5px solid hsl(0, 1%, 84%);
+            flex-direction: column;
+        }
+
+        form button {
+            width: 50%;
+            padding: 15px 0;
+            height: 50px;
+            background-color: hsl(223, 87%, 63%);
+            border-radius: 30px;
+            border: 0.5px solid hsl(0, 1%, 84%);
+            color: rgb(241, 240, 240);
+            margin-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 5px hsl(0, 0%, 76%);
+        }
+
+        form button:hover {
+            background-color: hsl(223, 84%, 53%);
+            cursor: pointer;
+        }
+
+        #form-error {
+            width: 100%;
+            color: hsl(354, 100%, 66%);
+            font-style: italic;
+            margin-top: 5px;
+            visibility: hidden;
+            margin-left: 10px;
+        }
+
+        .image {
+            width: 100%;
+            height: 40%;
+            margin-top: 10px;
+        }
+        .image img {
+            width: 28%;
+            height: auto;
+        }
+
+        footer {
+            width: 100%;
+            height: 50%;
+            flex-direction: column;
+        }
+
+        footer .logo i {
+            width: 20px;
+            height: 20px;
+            padding: 15px;
+            border-radius: 50%;
+            border: 0.5px solid hsl(0, 0%, 92%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            color: #4f7df3;
+            background-color: #ffffff;
+        }
+
+        footer .logo i:hover {
+            background-color: #4f7df3;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        footer p {
+            font-size: 12px;
+            margin-top: 20px;
+            color: hsl(0, 1%, 84%);
+        }
+
+        .input-error {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media only screen and (max-width: 375px) {
+
+            header {
+                height: 100%;
+            }
+
+            form {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            form input {
+                width: 90%;
+                margin: 0 auto;
+            }
+
+            form button {
+                width: 90%;
+                margin-top: 5px;
+            }
+
+            .image img {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            #form-error {
+                width: 90%;
+                text-align: center;
+                margin: 3px auto 0 auto;
+            }
+        }
+        
+    </style>
+</head>
+<body class="center">
+    
+    <div class="container center">
+        <div class="main center">
+            <header class="center">
+                <img src="./logo.svg" alt="">
+                <h1>We are launching <small class="soon">soon!</small></h1>
+                <p>Subscribe and get notified</p>
+                <form action="" id="form">
+                    <div class="input-error">
+                        <input type="email" name="" id="form-input" placeholder="Your email address">
+                        <small id="form-error">Please provide a valid email address</small>
+                    </div>
+                    <button type="submit">Notify Me</button>
+                </form>
+                
+            </header>
+            <div class="image center">
+                <img src="./illustration-dashboard.png" alt="">
+            </div>
+            <footer class="center">
+                <div class="logo center">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <p>© Copyright Ping. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        const form = document.getElementById("form")
+        const formInput = document.getElementById("form-input");
+        const formError = document.getElementById("form-error")
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const resultOfEmailRegex = emailRegex.test(formInput.value)
+            if (!(formInput.value.trim())) {
+                formError.style.visibility = "visible"
+                formError.innerHTML = "Email can not be empty";
+                formInput.style.border = "1px solid hsl(354, 100%, 66%)"
+
+            }   else if (!(resultOfEmailRegex)) {
+                    formError.style.visibility = "visible"
+                    formError.innerHTML = "Please provide a valid email address"
+                    formInput.style.border = "1px solid hsl(354, 100%, 66%)"
+                }   else {
+                        formError.style.visibility = "hidden";
+                        formInput.style.border = "0.5px solid hsl(0, 1%, 84%)"
+
+                    }
+        })
+    </script>
+
+</body>
+</html>
